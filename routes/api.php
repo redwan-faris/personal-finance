@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
             // Additional transaction routes
             Route::get('wallets/{walletId}/transactions', [TransactionController::class, 'getByWallet']);
+            Route::get('people/{personId}/transactions', [TransactionController::class, 'getByPerson']);
             Route::get('transaction-categories/{categoryId}/transactions', [TransactionController::class, 'getByCategory']);
             Route::get('transactions/type/{type}', [TransactionController::class, 'getByType']);
         });

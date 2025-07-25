@@ -24,8 +24,9 @@ class Update extends FormRequest
     public function rules(): array
     {
         return [
-            'wallet_id' => 'uuid|exists:wallet,id',
+            'wallet_id' => 'nullable|uuid|exists:wallet,id',
             'transaction_category_id' => 'uuid|exists:transaction_category,id',
+            'person_id' => 'nullable|uuid|exists:people,id',
             'amount' => 'integer|min:1',
             'currency' => 'string|max:3',
             'status' => 'string|max:50',

@@ -58,6 +58,16 @@ class TransactionController extends Controller
     }
 
     /**
+     * Get transactions by person
+     */
+    public function getByPerson(Request $request, string $personId)
+    {
+        $limit = $request->get('limit', 10);
+        $transactions = $this->transactionRepository->getByPerson($personId, $limit);
+        return success($transactions, 'Get Person Transactions Successfully');
+    }
+
+    /**
      * Get transactions by category
      */
     public function getByCategory(Request $request, string $categoryId)

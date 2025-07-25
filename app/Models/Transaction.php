@@ -27,6 +27,7 @@ class Transaction extends Model
     protected $fillable = [
         'wallet_id',
         'transaction_category_id',
+        'person_id',
         'amount',
         'currency',
         'status',
@@ -59,5 +60,13 @@ class Transaction extends Model
     public function transactionCategory(): BelongsTo
     {
         return $this->belongsTo(TransactionCategory::class);
+    }
+
+    /**
+     * Get the person that owns the transaction.
+     */
+    public function person(): BelongsTo
+    {
+        return $this->belongsTo(Person::class);
     }
 }

@@ -24,8 +24,9 @@ class Create extends FormRequest
     public function rules(): array
     {
         return [
-            'wallet_id' => 'required|uuid|exists:wallet,id',
+            'wallet_id' => 'nullable|uuid|exists:wallet,id',
             'transaction_category_id' => 'required|uuid|exists:transaction_category,id',
+            'person_id' => 'nullable|uuid|exists:people,id',
             'amount' => 'required|integer|min:1',
             'currency' => 'required|string|max:3',
             'status' => 'required|string|max:50',
@@ -33,5 +34,17 @@ class Create extends FormRequest
             'description' => 'nullable|string|max:1000',
             'direction' => 'required|string|in:in,out',
         ];
+    }
+
+    /**
+     * Configure the validator instance.
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if (!$this->wallet_id && !$this->person_id) {
+                $validator->errors()->add('wallet_id', 'Either wallet_id or person_id is required.');
+            }
+        });
     }
 }

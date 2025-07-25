@@ -1,0 +1,35 @@
+name: CI
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy server to production
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: "ubuntu"
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /var/www/exams-api
+          git pull
+          php artisan down
+          php artisan optimize
+          php artisan migrate --force
+          php artisan db:seed --force
+          composer install --optimize-autoloader --no-dev
+          npm run build
+          php artisan config:cache
+          php artisan up

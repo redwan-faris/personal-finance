@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\TransactionCategoryController;
 use Illuminate\Support\Facades\Route;
 
         /*
@@ -21,4 +22,5 @@ use Illuminate\Support\Facades\Route;
         Route::middleware('auth:sanctum')->group(function () {
             Route::apiResource('users', UserController::class);
             Route::apiResource('wallets', WalletController::class);
+            Route::apiResource('transaction-categories', TransactionCategoryController::class);
         });

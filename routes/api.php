@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TransactionCategoryController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
         /*
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
             Route::apiResource('wallets', WalletController::class);
             Route::apiResource('transaction-categories', TransactionCategoryController::class);
             Route::apiResource('transactions', TransactionController::class);
+            Route::apiResource('people', PersonController::class);
 
             // Additional transaction routes
             Route::get('wallets/{walletId}/transactions', [TransactionController::class, 'getByWallet']);

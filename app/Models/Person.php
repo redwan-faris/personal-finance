@@ -19,6 +19,8 @@ class Person extends Model
         'email',
         'balance',
         'note',
+        'type',
+        'address',
     ];
 
     protected $casts = [

@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Wallet extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'wallet';
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +22,8 @@ class Wallet extends Model
         'balance',
         'currency',
         'name',
+        'user_id',
+        'description',
     ];
 
     /**
@@ -30,6 +34,14 @@ class Wallet extends Model
     protected $casts = [
         'balance' => 'integer',
     ];
+
+    /**
+     * Get the user that owns the wallet.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get the transactions for the wallet.

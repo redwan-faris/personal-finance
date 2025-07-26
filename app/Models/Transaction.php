@@ -34,6 +34,8 @@ class Transaction extends Model
         'type',
         'description',
         'direction',
+        'transaction_date',
+        'notes',
     ];
 
     /**
@@ -44,6 +46,7 @@ class Transaction extends Model
     protected $casts = [
         'amount' => 'integer',
         'type' => TransactionTypeEnum::class,
+        'transaction_date' => 'date',
     ];
 
     /**
@@ -60,6 +63,14 @@ class Transaction extends Model
     public function transactionCategory(): BelongsTo
     {
         return $this->belongsTo(TransactionCategory::class);
+    }
+
+    /**
+     * Get the category that owns the transaction (alias for transactionCategory).
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(TransactionCategory::class, 'transaction_category_id');
     }
 
     /**

@@ -29,10 +29,10 @@
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <!-- Description -->
                     <div class="sm:col-span-2">
-                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <label for="description" class="block text-sm font-medium text-gray-700">Description (Optional)</label>
                         <input type="text" name="description" id="description" value="{{ old('description') }}"
                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('description') border-red-300 @enderror"
-                               placeholder="Enter transaction description">
+                               placeholder="Enter transaction description (optional)">
                         @error('description')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror

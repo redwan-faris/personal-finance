@@ -46,7 +46,7 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'description' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
             'amount' => 'required|numeric',
             'type' => 'required|in:deposit,withdraw,transfer,payment,receipt,refund,charge,credit,debit,other',
             'wallet_id' => 'required|exists:wallets,id',
@@ -98,7 +98,7 @@ class TransactionController extends Controller
     public function update(Request $request, Transaction $transaction)
     {
         $validated = $request->validate([
-            'description' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
             'amount' => 'required|numeric',
             'type' => 'required|in:deposit,withdraw,transfer,payment,receipt,refund,charge,credit,debit,other',
             'wallet_id' => 'required|exists:wallets,id',

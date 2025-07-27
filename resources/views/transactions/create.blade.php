@@ -58,10 +58,44 @@
                     <div>
                         <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
                         <select name="type" id="type" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('type') border-red-300 @enderror">
-                            <option value="income" {{ old('type') == 'income' ? 'selected' : '' }}>Income</option>
-                            <option value="expense" {{ old('type') == 'expense' ? 'selected' : '' }}>Expense</option>
+                            <option value="credit" {{ old('type') == 'credit' ? 'selected' : '' }}>Credit (Income)</option>
+                            <option value="debit" {{ old('type') == 'debit' ? 'selected' : '' }}>Debit (Expense)</option>
+                            <option value="deposit" {{ old('type') == 'deposit' ? 'selected' : '' }}>Deposit</option>
+                            <option value="withdraw" {{ old('type') == 'withdraw' ? 'selected' : '' }}>Withdraw</option>
+                            <option value="transfer" {{ old('type') == 'transfer' ? 'selected' : '' }}>Transfer</option>
+                            <option value="payment" {{ old('type') == 'payment' ? 'selected' : '' }}>Payment</option>
+                            <option value="receipt" {{ old('type') == 'receipt' ? 'selected' : '' }}>Receipt</option>
+                            <option value="refund" {{ old('type') == 'refund' ? 'selected' : '' }}>Refund</option>
+                            <option value="charge" {{ old('type') == 'charge' ? 'selected' : '' }}>Charge</option>
+                            <option value="other" {{ old('type') == 'other' ? 'selected' : '' }}>Other</option>
                         </select>
                         @error('type')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Status -->
+                    <div>
+                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                        <select name="status" id="status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('status') border-red-300 @enderror">
+                            <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                            <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="cancelled" {{ old('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                            <option value="failed" {{ old('status') == 'failed' ? 'selected' : '' }}>Failed</option>
+                        </select>
+                        @error('status')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Direction -->
+                    <div>
+                        <label for="direction" class="block text-sm font-medium text-gray-700">Direction</label>
+                        <select name="direction" id="direction" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('direction') border-red-300 @enderror">
+                            <option value="in" {{ old('direction') == 'in' ? 'selected' : '' }}>Incoming</option>
+                            <option value="out" {{ old('direction') == 'out' ? 'selected' : '' }}>Outgoing</option>
+                        </select>
+                        @error('direction')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>

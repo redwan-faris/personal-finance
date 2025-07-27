@@ -12,7 +12,8 @@ class Wallet extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $table = 'wallet';
+    protected $table = 'wallets';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +21,6 @@ class Wallet extends Model
      */
     protected $fillable = [
         'balance',
-        'currency',
         'name',
         'user_id',
         'description',

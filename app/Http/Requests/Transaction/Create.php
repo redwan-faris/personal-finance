@@ -28,7 +28,6 @@ class Create extends FormRequest
             'transaction_category_id' => 'required|uuid|exists:transaction_category,id',
             'person_id' => 'nullable|uuid|exists:people,id',
             'amount' => 'required|integer|min:1',
-            'currency' => 'required|string|max:3',
             'status' => 'required|string|max:50',
             'type' => ['required', new Enum(TransactionTypeEnum::class)],
             'description' => 'nullable|string|max:1000',

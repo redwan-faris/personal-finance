@@ -23,7 +23,6 @@ class Create extends FormRequest
     {
         return [
             'balance' => 'required|integer|min:0',
-            'currency' => 'required|string|max:3',
             'name' => 'required|string|max:255',
         ];
     }

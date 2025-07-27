@@ -28,7 +28,6 @@ class Update extends FormRequest
             'transaction_category_id' => 'uuid|exists:transaction_category,id',
             'person_id' => 'nullable|uuid|exists:people,id',
             'amount' => 'integer|min:1',
-            'currency' => 'string|max:3',
             'status' => 'string|max:50',
             'type' => [new Enum(TransactionTypeEnum::class)],
             'description' => 'nullable|string|max:1000',

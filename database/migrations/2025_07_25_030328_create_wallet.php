@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wallet', function (Blueprint $table) {
+        Schema::create('wallets', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('balance')->default(0);
-            $table->string('currency');
             $table->string('name');
             $table->timestamps();
         });

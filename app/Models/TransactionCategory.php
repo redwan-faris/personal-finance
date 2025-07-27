@@ -16,7 +16,7 @@ class TransactionCategory extends Model
      *
      * @var string
      */
-    protected $table = 'transaction_category';
+    protected $table = 'transaction_categories';
 
     /**
      * The attributes that are mass assignable.

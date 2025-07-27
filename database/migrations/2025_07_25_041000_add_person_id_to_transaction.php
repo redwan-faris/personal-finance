@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('transaction', function (Blueprint $table) {
+        Schema::table('transactions', function (Blueprint $table) {
             $table->uuid('person_id')->nullable()->after('transaction_category_id');
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
         });

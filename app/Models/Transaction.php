@@ -17,7 +17,7 @@ class Transaction extends Model
      *
      * @var string
      */
-    protected $table = 'transaction';
+    protected $table = 'transactions';
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +29,6 @@ class Transaction extends Model
         'transaction_category_id',
         'person_id',
         'amount',
-        'currency',
         'status',
         'type',
         'description',

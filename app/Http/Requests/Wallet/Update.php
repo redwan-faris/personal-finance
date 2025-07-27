@@ -23,7 +23,6 @@ class Update extends FormRequest
     {
         return [
             'balance' => 'integer|min:0',
-            'currency' => 'string|max:3',
             'name' => 'string|max:255',
         ];
     }

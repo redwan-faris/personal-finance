@@ -12,12 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('wallet_id');
             $table->uuid('transaction_category_id');
             $table->integer('amount');
-            $table->string('currency');
             $table->string('status');
             $table->enum('type', array_column(TransactionTypeEnum::cases(), 'value'));
             $table->string('description')->nullable();

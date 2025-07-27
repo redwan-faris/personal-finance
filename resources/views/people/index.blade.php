@@ -32,6 +32,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Balance</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
                                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
@@ -61,6 +62,14 @@
                                     <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {{ $person->type === 'customer' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800' }}">
                                         {{ ucfirst($person->type ?? 'unknown') }}
                                     </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span class="font-medium {{ $person->balance > 0 ? 'text-green-600' : ($person->balance < 0 ? 'text-red-600' : 'text-gray-600') }}">
+                                        {{ $person->balance > 0 ? '+' : '' }}${{ number_format($person->balance / 100, 2) }}
+                                    </span>
+                                    <div class="text-xs text-gray-500">
+                                        {{ $person->balance > 0 ? 'They owe you' : ($person->balance < 0 ? 'You owe them' : 'Settled') }}
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $person->created_at->format('M d, Y') }}

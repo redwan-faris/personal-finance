@@ -12,20 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         // Add missing columns to wallet table
-        Schema::table('wallet', function (Blueprint $table) {
+        Schema::table('wallets', function (Blueprint $table) {
             $table->uuid('user_id')->nullable()->after('name');
             $table->text('description')->nullable()->after('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         // Add missing columns to transaction table
-        Schema::table('transaction', function (Blueprint $table) {
+        Schema::table('transactions', function (Blueprint $table) {
             $table->date('transaction_date')->nullable()->after('direction');
             $table->text('notes')->nullable()->after('transaction_date');
         });
 
         // Add missing columns to transaction_category table
-        Schema::table('transaction_category', function (Blueprint $table) {
+        Schema::table('transaction_categories', function (Blueprint $table) {
             $table->enum('type', ['income', 'expense'])->default('expense')->after('description');
             $table->string('color', 7)->nullable()->after('type');
         });

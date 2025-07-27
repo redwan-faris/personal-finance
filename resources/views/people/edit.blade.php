@@ -83,7 +83,7 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <span class="text-gray-500 sm:text-sm">$</span>
                             </div>
-                            <input type="number" name="balance" id="balance" step="0.01" value="{{ old('balance', $person->balance / 100) }}"
+                            <input type="number" name="balance" id="balance" step="0.01" value="{{ old('balance', $person->balance) }}"
                                    class="pl-7 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('balance') border-red-300 @enderror"
                                    placeholder="0.00">
                         </div>

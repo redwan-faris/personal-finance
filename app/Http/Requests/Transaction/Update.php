@@ -25,7 +25,7 @@ class Update extends FormRequest
     {
         return [
             'wallet_id' => 'nullable|uuid|exists:wallet,id',
-            'transaction_category_id' => 'uuid|exists:transaction_category,id',
+            'transaction_category_id' => 'required|uuid|exists:transaction_category,id',
             'person_id' => 'nullable|uuid|exists:people,id',
             'amount' => 'integer|min:1',
             'status' => 'string|max:50',

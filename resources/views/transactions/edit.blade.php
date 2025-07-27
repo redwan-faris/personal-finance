@@ -103,8 +103,10 @@
 
                         <!-- Category -->
                         <div>
-                            <label for="transaction_category_id" class="block text-sm font-medium text-gray-700">Category</label>
-                            <select name="transaction_category_id" id="transaction_category_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('transaction_category_id') border-red-300 @enderror">
+                            <label for="transaction_category_id" class="block text-sm font-medium text-gray-700">
+                                Category <span class="text-red-500">*</span>
+                            </label>
+                            <select name="transaction_category_id" id="transaction_category_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('transaction_category_id') border-red-300 @enderror">
                                 <option value="">Select a category</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('transaction_category_id', $transaction->transaction_category_id) == $category->id ? 'selected' : '' }}>

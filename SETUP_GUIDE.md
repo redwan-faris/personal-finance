@@ -97,7 +97,7 @@ Use any of these accounts to login:
 - Delete transactions
 - Filter by wallet, category, person
 - **Transaction Types**: Credit, Debit, Deposit, Withdraw, Transfer, Payment, Receipt, Refund, Charge, Other
-- **Required Fields**: Status, Direction, Amount, Type, Wallet, Date
+- **Required Fields**: Status, Direction, Amount, Type, Wallet, Category, Date
 
 ### **Wallets**
 - Manage multiple wallets

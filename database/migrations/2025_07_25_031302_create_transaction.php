@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('wallet_id');
             $table->uuid('transaction_category_id');
-            $table->integer('amount');
+            $table->bigInteger('amount');
             $table->string('status');
             $table->enum('type', array_column(TransactionTypeEnum::cases(), 'value'));
             $table->string('description')->nullable();

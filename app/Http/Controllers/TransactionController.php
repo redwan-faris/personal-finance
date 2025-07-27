@@ -50,7 +50,7 @@ class TransactionController extends Controller
             'amount' => 'required|numeric',
             'type' => 'required|in:deposit,withdraw,transfer,payment,receipt,refund,charge,credit,debit,other',
             'wallet_id' => 'required|exists:wallets,id',
-            'transaction_category_id' => 'nullable|exists:transaction_categories,id',
+            'transaction_category_id' => 'required|exists:transaction_categories,id',
             'person_id' => 'nullable|exists:people,id',
             'transaction_date' => 'required|date',
             'notes' => 'nullable|string',
@@ -58,10 +58,9 @@ class TransactionController extends Controller
             'direction' => 'required|in:in,out',
         ]);
 
-        // Convert amount from dollars to cents
-        $validated['amount'] = (int)($validated['amount'] * 100);
 
         $transaction = Transaction::create($validated);
+        $balanceChange = $transaction->direction === 'in' ? $transaction->amount : -$transaction->amount;
 
         // Update person's balance if transaction involves a person
         if ($transaction->person_id) {
@@ -69,9 +68,13 @@ class TransactionController extends Controller
             if ($person) {
                 // If direction is 'in', you're receiving money (person owes you less or you owe them more)
                 // If direction is 'out', you're giving money (person owes you more or you owe them less)
-                $balanceChange = $transaction->direction === 'in' ? $transaction->amount : -$transaction->amount;
-                $person->increment('balance', $balanceChange);
+                $person->increment('balance', -$balanceChange);
             }
+        }
+        //add it to wallet
+        $wallet = Wallet::find($transaction->wallet_id);
+        if ($wallet) {
+            $wallet->increment('balance', $balanceChange);
         }
 
         return redirect()->route('transactions.index')
@@ -99,7 +102,7 @@ class TransactionController extends Controller
             'amount' => 'required|numeric',
             'type' => 'required|in:deposit,withdraw,transfer,payment,receipt,refund,charge,credit,debit,other',
             'wallet_id' => 'required|exists:wallets,id',
-            'transaction_category_id' => 'nullable|exists:transaction_categories,id',
+            'transaction_category_id' => 'required|exists:transaction_categories,id',
             'person_id' => 'nullable|exists:people,id',
             'transaction_date' => 'required|date',
             'notes' => 'nullable|string',

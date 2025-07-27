@@ -99,7 +99,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $transaction->description }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                                     <span class="font-medium {{ $transaction->direction === 'in' ? 'text-green-600' : 'text-red-600' }}">
-                                        {{ $transaction->direction === 'in' ? '+' : '-' }}${{ number_format($transaction->amount / 100, 2) }}
+                                        {{ $transaction->direction === 'in' ? '+' : '-' }}${{ number_format($transaction->amount, 2) }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($transaction->type) }}</td>

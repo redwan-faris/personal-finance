@@ -65,7 +65,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                                     <span class="font-medium {{ $person->balance > 0 ? 'text-green-600' : ($person->balance < 0 ? 'text-red-600' : 'text-gray-600') }}">
-                                        {{ $person->balance > 0 ? '+' : '' }}${{ number_format($person->balance / 100, 2) }}
+                                        {{ $person->balance > 0 ? '+' : '' }}${{ number_format($person->balance, 2) }}
                                     </span>
                                     <div class="text-xs text-gray-500">
                                         {{ $person->balance > 0 ? 'They owe you' : ($person->balance < 0 ? 'You owe them' : 'Settled') }}

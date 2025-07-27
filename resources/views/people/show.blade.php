@@ -83,7 +83,7 @@
                     <dt class="text-sm font-medium text-gray-500">Current Balance</dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                         <span class="text-2xl font-bold {{ $person->balance > 0 ? 'text-green-600' : ($person->balance < 0 ? 'text-red-600' : 'text-gray-600') }}">
-                            {{ $person->balance > 0 ? '+' : '' }}${{ number_format($person->balance / 100, 2) }}
+                            {{ $person->balance > 0 ? '+' : '' }}${{ number_format($person->balance, 2) }}
                         </span>
                         <div class="text-sm text-gray-500 mt-1">
                             {{ $person->balance > 0 ? 'They owe you money' : ($person->balance < 0 ? 'You owe them money' : 'Balance is settled') }}
@@ -131,7 +131,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $transaction->description }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                                     <span class="font-medium {{ $transaction->direction === 'in' ? 'text-green-600' : 'text-red-600' }}">
-                                        {{ $transaction->direction === 'in' ? '+' : '-' }}${{ number_format($transaction->amount / 100, 2) }}
+                                        {{ $transaction->direction === 'in' ? '+' : '-' }}${{ number_format($transaction->amount, 2) }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ ucfirst($transaction->type) }}</td>

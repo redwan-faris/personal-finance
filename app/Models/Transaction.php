@@ -43,7 +43,7 @@ class Transaction extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'amount' => 'integer',
+        'amount' => 'float',
         'type' => TransactionTypeEnum::class,
         'transaction_date' => 'date',
     ];

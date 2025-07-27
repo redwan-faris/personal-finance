@@ -32,7 +32,7 @@ class Wallet extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'balance' => 'integer',
+        'balance' => 'float',
     ];
 
     /**

@@ -24,7 +24,7 @@ class Person extends Model
     ];
 
     protected $casts = [
-        'balance' => 'integer',
+        'balance' => 'float',
     ];
 
     /**

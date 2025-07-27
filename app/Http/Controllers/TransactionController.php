@@ -58,7 +58,6 @@ class TransactionController extends Controller
             'direction' => 'required|in:in,out',
         ]);
 
-
         $transaction = Transaction::create($validated);
         $balanceChange = $transaction->direction === 'in' ? $transaction->amount : -$transaction->amount;
 
@@ -68,7 +67,8 @@ class TransactionController extends Controller
             if ($person) {
                 // If direction is 'in', you're receiving money (person owes you less or you owe them more)
                 // If direction is 'out', you're giving money (person owes you more or you owe them less)
-                $person->increment('balance', -$balanceChange);
+                $personBalance = -1 * $balanceChange;
+                $person->increment('balance', $personBalance);
             }
         }
         //add it to wallet
@@ -110,9 +110,6 @@ class TransactionController extends Controller
             'direction' => 'required|in:in,out',
         ]);
 
-        // Convert amount from dollars to cents
-        $validated['amount'] = (int)($validated['amount'] * 100);
-
         // Store old values for balance adjustment
         $oldPersonId = $transaction->person_id;
         $oldAmount = $transaction->amount;
@@ -125,7 +122,8 @@ class TransactionController extends Controller
             $oldPerson = Person::find($oldPersonId);
             if ($oldPerson) {
                 $oldBalanceChange = $oldDirection === 'in' ? $oldAmount : -$oldAmount;
-                $oldPerson->decrement('balance', $oldBalanceChange);
+                $oldPersonBalance = -1 * $oldBalanceChange;
+                $oldPerson->decrement('balance', $oldPersonBalance);
             }
         }
 
@@ -136,7 +134,8 @@ class TransactionController extends Controller
                 // If direction is 'in', you're receiving money (person owes you less or you owe them more)
                 // If direction is 'out', you're giving money (person owes you more or you owe them less)
                 $balanceChange = $transaction->direction === 'in' ? $transaction->amount : -$transaction->amount;
-                $person->increment('balance', $balanceChange);
+                $personBalance = -1 * $balanceChange;
+                $person->increment('balance', $personBalance);
             }
         }
 
@@ -151,7 +150,8 @@ class TransactionController extends Controller
             $person = Person::find($transaction->person_id);
             if ($person) {
                 $balanceChange = $transaction->direction === 'in' ? $transaction->amount : -$transaction->amount;
-                $person->decrement('balance', $balanceChange);
+                $personBalance = -1 * $balanceChange;
+                $person->decrement('balance', $personBalance);
             }
         }
 

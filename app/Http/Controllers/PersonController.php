@@ -40,11 +40,7 @@ class PersonController extends Controller
             'balance' => 'nullable|numeric',
         ]);
 
-        // Convert balance from dollars to cents if provided
-        if (isset($validated['balance'])) {
-            $validated['balance'] = (int)($validated['balance'] * 100);
-        }
-
+   
         $person = Person::create($validated);
 
         return redirect()->route('people.index')
@@ -72,11 +68,7 @@ class PersonController extends Controller
             'balance' => 'nullable|numeric',
         ]);
 
-        // Convert balance from dollars to cents if provided
-        if (isset($validated['balance'])) {
-            $validated['balance'] = (int)($validated['balance'] * 100);
-        }
-
+  
         $person->update($validated);
 
         return redirect()->route('people.index')

@@ -20,22 +20,22 @@
         </div>
     </div>
 
-    <!-- Stats -->
+    <!-- Financial Summary Cards -->
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <div class="bg-white overflow-hidden shadow-xl rounded-2xl border border-slate-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="p-6">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <div class="h-12 w-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                        <div class="h-12 w-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
                             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                             </svg>
                         </div>
                     </div>
                     <div class="ml-5 w-0 flex-1">
                         <dl>
-                            <dt class="text-sm font-medium text-slate-500 truncate">Total Users</dt>
-                            <dd class="text-2xl font-bold text-slate-900">{{ $stats['total_users'] }}</dd>
+                            <dt class="text-sm font-medium text-slate-500 truncate">Total Wallet Balance</dt>
+                            <dd class="text-2xl font-bold text-green-600">${{ number_format($financial_stats['total_wallet_balance'], 2) }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -48,14 +48,14 @@
                     <div class="flex-shrink-0">
                         <div class="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
                             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                         </div>
                     </div>
                     <div class="ml-5 w-0 flex-1">
                         <dl>
-                            <dt class="text-sm font-medium text-slate-500 truncate">Total Wallets</dt>
-                            <dd class="text-2xl font-bold text-slate-900">{{ $stats['total_wallets'] }}</dd>
+                            <dt class="text-sm font-medium text-slate-500 truncate">Money Owed to You</dt>
+                            <dd class="text-2xl font-bold text-blue-600">${{ number_format($financial_stats['total_owed_to_you'], 2) }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
             <div class="p-6">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <div class="h-12 w-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
+                        <div class="h-12 w-12 rounded-xl bg-gradient-to-r from-red-500 to-pink-500 flex items-center justify-center shadow-lg">
                             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                             </svg>
@@ -74,8 +74,8 @@
                     </div>
                     <div class="ml-5 w-0 flex-1">
                         <dl>
-                            <dt class="text-sm font-medium text-slate-500 truncate">Total Transactions</dt>
-                            <dd class="text-2xl font-bold text-slate-900">{{ $stats['total_transactions'] }}</dd>
+                            <dt class="text-sm font-medium text-slate-500 truncate">Money You Owe</dt>
+                            <dd class="text-2xl font-bold text-red-600">${{ number_format($financial_stats['total_you_owe'], 2) }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -86,19 +86,48 @@
             <div class="p-6">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <div class="h-12 w-12 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center shadow-lg">
+                        <div class="h-12 w-12 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center shadow-lg">
                             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
                         </div>
                     </div>
                     <div class="ml-5 w-0 flex-1">
                         <dl>
-                            <dt class="text-sm font-medium text-slate-500 truncate">Total People</dt>
-                            <dd class="text-2xl font-bold text-slate-900">{{ $stats['total_people'] }}</dd>
+                            <dt class="text-sm font-medium text-slate-500 truncate">Net Worth</dt>
+                            <dd class="text-2xl font-bold {{ $financial_stats['net_worth'] >= 0 ? 'text-purple-600' : 'text-red-600' }}">
+                                ${{ number_format($financial_stats['net_worth'], 2) }}
+                            </dd>
                         </dl>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+ 
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <!-- Monthly Transaction Chart -->
+        <div class="bg-white shadow-xl rounded-2xl border border-slate-200 overflow-hidden">
+            <div class="px-6 py-5 border-b border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900">Monthly Transactions</h3>
+                <p class="mt-1 text-sm text-slate-600">Income vs Expenses over the last 12 months</p>
+            </div>
+            <div class="p-6">
+                <canvas id="monthlyChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Category Distribution Chart -->
+        <div class="bg-white shadow-xl rounded-2xl border border-slate-200 overflow-hidden">
+            <div class="px-6 py-5 border-b border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900">Category Distribution</h3>
+                <p class="mt-1 text-sm text-slate-600">Transaction amounts by category</p>
+            </div>
+            <div class="p-6">
+                <canvas id="categoryChart" width="400" height="200"></canvas>
             </div>
         </div>
     </div>
@@ -159,4 +188,98 @@
         </div>
     </div>
 </div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Monthly Transaction Chart
+    const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+    const monthlyData = @json($transaction_stats['monthly_data']);
+    
+    new Chart(monthlyCtx, {
+        type: 'bar',
+        data: {
+            labels: monthlyData.map(item => item.month),
+            datasets: [{
+                label: 'Income',
+                data: monthlyData.map(item => item.income),
+                backgroundColor: 'rgba(34, 197, 94, 0.8)',
+                borderColor: 'rgba(34, 197, 94, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Expenses',
+                data: monthlyData.map(item => item.expense),
+                backgroundColor: 'rgba(239, 68, 68, 0.8)',
+                borderColor: 'rgba(239, 68, 68, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value.toLocaleString();
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+
+    // Category Distribution Chart
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    const categoryData = @json($transaction_stats['category_data']);
+    
+    new Chart(categoryCtx, {
+        type: 'doughnut',
+        data: {
+            labels: categoryData.map(item => item.category),
+            datasets: [{
+                data: categoryData.map(item => item.amount),
+                backgroundColor: [
+                    'rgba(59, 130, 246, 0.8)',
+                    'rgba(16, 185, 129, 0.8)',
+                    'rgba(245, 158, 11, 0.8)',
+                    'rgba(239, 68, 68, 0.8)',
+                    'rgba(139, 92, 246, 0.8)',
+                    'rgba(236, 72, 153, 0.8)',
+                    'rgba(6, 182, 212, 0.8)',
+                    'rgba(34, 197, 94, 0.8)'
+                ],
+                borderWidth: 2,
+                borderColor: '#ffffff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return label + ': $' + value.toLocaleString();
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
 @endsection

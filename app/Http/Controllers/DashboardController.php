@@ -145,7 +145,7 @@ class DashboardController extends Controller
             ->get()
             ->map(function ($item) {
                 return [
-                    'type' => ucfirst($item->type),
+                    'type' => ucfirst($item->type->value),
                     'amount' => $item->total_amount,
                     'count' => $item->count,
                 ];
